@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<style>
+.login_div{
+    position: absolute;
+    width: 600px;
+    height: 300px;
+
+
+    /* Center form on page horizontally & vertically */
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -150px;
+    width: 300px;
+    border: 30px Black;
+}
+
+</style>
+<body>
+<div class="login_div">
+    <h2>Login</h2>
+    <form action="login" method="post">
+   {% csrf_token %}
+    <input type="text" name="username" placeholder="enter your username" required><br>
+    <input type="password" name="password" placeholder="enter your password" required><br>
+    <input type="submit">
+        <p class="text-center">
+            Please Click on the <a href="http://127.0.0.1:8000/credentials/register"> Register Link </a> to register
+        </p>
+    </form>
+</div>
+{% for msg in messages %}
+<h2>{{msg}}</h2>
+{% endfor %}
+</body>
+</html>
+
+

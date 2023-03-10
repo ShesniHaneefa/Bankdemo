@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+<script>
+var districtObject = {
+  "Kannur": {
+  "Thalipparamba": ["Variables", "Strings", "Arrays"],
+  "Payyannur" : ["SELECT", "UPDATE", "DELETE"],
+  "Iritty" : ["Variables", "Strings", "Arrays"],
+  "Thalassery" :["SELECT", "UPDATE", "DELETE"]
+
+  },
+
+"Malappuram" : {
+    "Perinthalmanna" : ["Variables", "Strings", "Arrays"],
+    "Nilambur" : ["SELECT", "UPDATE", "DELETE"],
+    "Tirur" : ["Variables", "Strings", "Arrays"],
+    "Ponnani" : ["SELECT", "UPDATE", "DELETE"]
+
+   },
+
+"palakkad": {
+    "Pattambi" : ["ACVBD", "IKJHK", "<LKMN>"],
+    "Ottappalam" : ["TYUIO", "HBGFC", "NJKMB"],
+    "Cherppulassery" : ["GHYJNB", "FVFGV", "Arrays"],
+    "Alathur" : ["Variables", "Strings", "Arrays"],
+    "Vaniyambara" : ["SELECT", "UPDATE", "DELETE"]
+   },
+
+"Idukki" : {
+    "Devikulam" : ["Variables", "Strings", "Arrays"],
+    "Udumbumchola" : ["SELECT", "UPDATE", "DELETE"],
+    "Peerumedu" : ["Variables", "Strings", "Arrays"],
+    "Thodupuzha" : ["SELECT", "UPDATE", "DELETE"]
+  },
+
+"Calicut" : {
+    "Payyoli" : ["Variables", "Strings", "Arrays"],
+    "Vadakara" : ["SELECT", "UPDATE", "DELETE"],
+    "Thamarassery" : ["Variables", "Strings", "Arrays"],
+    "Koduvalli" : ["SELECT", "UPDATE", "DELETE"]
+  },
+}
+
+window.onload = function() {
+  var districtSel = document.getElementById("district");
+  var branchSel = document.getElementById("branch");
+<!--  var chapterSel = document.getElementById("chapter");-->
+  for (var x in districtObject) {
+    districtSel.options[districtSel.options.length] = new Option(x, x);
+  }
+  districtSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+<!--    chapterSel.length = 1;-->
+    branchSel.length = 1;
+    //display correct values
+    for (var y in districtObject[this.value]) {
+      branchSel.options[branchSel.options.length] = new Option(y, y);
+    }
+  }
+  branchSel.onchange = function() {
+    //empty Chapters dropdown
+    chapterSel.length = 1;
+    //display correct values
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+      chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+    }
+  }
+}
+</script>
+
+
+
+
+</head>
+<body>
+<!--<form>-->
+ <div class="form_div">
+     <form action="message" method="post" name="form_name" id="form_id" class="form_class" >
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type=text name=textnames id="textname" size="30" required></td>
+        </tr>
+
+        <tr>
+            <td>DOB</td>
+            <td><input type="date" name="dob" id="dob" size="30"></td>
+        </tr>
+
+        <tr>
+            <td>Age</td>
+            <td><input type="text" name="age" id="age" size="30"></td>
+
+        </tr>
+
+        <tr>
+            <td>Gender</td>
+            <td><input type="radio" name="sex" value="male" size="10">Male
+            <input type="radio" name="sex" value="Female" size="10">Female</td>
+        </tr>
+
+        <tr>
+            <td>Mobile No</td>
+            <td><input type="text" name="mobileno" id="mobileno" size="30"></td>
+        </tr>
+
+        <tr>
+            <td>Email Id</td>
+            <td><input type="text" name="emailid" id="emailid" size="30"></td>
+        </tr>
+
+        <tr>
+            <td>Address</td>
+            <td valign="middle" align="left"><textarea></textarea></td>
+            </tr>
+
+            <tr>
+                <td>Account Type</td>
+                <td><select name="Account Type">
+                    <option value="-1" selected><--Please Select--></option>
+                    <option value="Savings Account">Savings Account</option>
+                    <option value="Current Account">Current Account</option>
+                    <option value="NRI Account">NRI Account</option>
+                    <option value="Salary Account">Salary Account</option>
+                    <option value="NRO Account">NRO Account</option>
+                </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Materials Provide</td>
+                <td><input type="checkbox" name="checkbox" value="debitcard" size="10">Debit Card
+                <input type="radio" name="checkbox" value="Credit Card" size="10">Credit Card
+                <input type="radio" name="checkbox" value="Credit Card" size="10">Cheque Book</td>
+            </tr>
+
+        <tr>
+            <td>District: <select name="district" id="district">
+            <option value="" selected="selected">Select District</option>
+            </select>
+                <br><br>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Branch: <select name="branch" id="branch">
+            <option value="" selected="selected">Please select district first</option>
+            </select>
+                <br><br>
+            </td>
+        </tr>
+
+        <tr>
+            <td><a href="credentials/message">
+                <input type="submit">
+            </a></td>
+        </tr>
+    </table>
+
+    </form>
+ </div>
+     <a href="/"><button>Logout</button></a>
+</body>
+</html>
